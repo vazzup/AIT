@@ -1,0 +1,188 @@
+<html>
+<head>
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+<style>
+body {
+    background-color: white;
+}
+         
+        @media only screen and (max-width: 500px) {
+    body {
+        background-color: lightblue;
+    }
+}
+    
+         @media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-md-1 {width: 8.33%;}
+    .col-md-2 {width: 16.66%;}
+    .col-md-3 {width: 25%;}
+    .col-md-4 {width: 33.33%;}
+    .col-md-5 {width: 41.66%;}
+    .col-md-6 {width: 50%;}
+    .col-md-7 {width: 58.33%;}
+    .col-md-8 {width: 66.66%;}
+    .col-md-9 {width: 75%;}
+    .col-md-10 {width: 83.33%;}
+    .col-md-11 {width: 91.66%;}
+    .col-md-12 {width: 100%;}
+}
+
+         
+         
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #191970;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #000;
+}
+        h1 {
+  color: white;
+}
+        img {
+    width: 100%;
+    height: 70%;
+}
+    
+    .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+   width: 40%
+  
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+    
+}
+         .form-group {
+             width: 50%;
+         }
+      
+</style>     
+</head>
+       
+    
+    
+<body>
+    <center>
+        <header>
+   <nav>
+<ul>
+       <li><a href="ANAirlines.html">Home</a></li>
+<li><a href="bookflight.html">Book Flight</a></li> 
+<li><a href="checkin.html">Check-IN</a></li> 
+<li><a href="">Flight Status</a></li> 
+<li><a href="">Baggage Information</a></li>
+    </ul><br><br>
+    
+    
+      <section>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p style="font-size:30" align="center" >Online Check-In</p><br>
+        </div>
+        </div>
+    </div> </section>
+    <div class="card">
+                <div class="row">
+                <div class="col-md-12">
+                     <div class="container col-md-12">
+                          <div class="row">
+                <div class="col-md-12">
+                     <form >
+    <div class="form-group">
+                <div class="row">
+              <label for="email">Full Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Peter Smith" name="email">
+                </div>
+         </div>
+    <div class="form-group">
+                  <div class="col-md-6">
+                      <label for="pwd">Booking Ref</label>
+                      <input type="text" class="form-control" id="booking_ref" placeholder="123456" name="pwd">
+        </div>
+    </div>
+     <div class="form-group">
+            <div class="col-md-6">
+             <label for="pwd">Flight No</label>
+            <input type="number" class="form-control" id="flight_no" placeholder="AI123 " name="date">
+                             </div>
+    </div>
+                         <div class="row">
+                         
+                         </div>
+ <div class="row">
+            <button type="button" onclick="loadDoc()" class="btn btn-primary">Check In</button>
+                    </div>       
+  </form>
+                    
+                    
+<!--file:///C:/Users/Student/Downloads/checked_in.txt-->
+                              </div>
+                         </div>
+                  </div>
+                </div>
+                </div>
+                </div>
+       <div class="row">
+           <div id="demo" class="col-md-12" >
+               <p>Click Submit to Check IN!</p>
+           </div>
+        </div>
+    
+</nav>
+    </header>
+</center>
+
+    
+</body>
+<script>
+    function loadDoc() {
+        // console.log("Inside the function");
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          document.getElementById("demo").innerHTML =
+          this.responseText;
+            // console.log("responseText is " + this.responseText);
+      };
+      var name = document.getElementById("name").value;
+      var booking_ref = document.getElementById("booking_ref").value;
+      var flight_no = document.getElementById("flight_no").value;
+      console.log("name " + name);
+      console.log("booking_ref " + booking_ref);
+      console.log("flight_no " + flight_no);
+      params = "?name=" + name + "&booking_ref=" + booking_ref + "&flight_no=" + flight_no;
+      url_name = "http://127.0.0.1:5000/booking_verify" + params;
+      console.log(url_name);
+      xhttp.open("GET", url_name , true);
+      xhttp.send();
+    }
+</script>
+</html>
