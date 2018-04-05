@@ -44,25 +44,25 @@ li a:hover {
 
     function drawChart() {
       // Define the chart to be drawn.
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Age Group');
-      data.addColumn('number', 'Percentage');
       var xhttp = new XMLHttpRequest();
       var info = [""];
       xhttp.onreadystatechange = function() {
 	console.log(this.responseText);
         info = JSON.parse(this.responseText).info
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Age Group');
+        data.addColumn('number', 'Percentage');
+        data.addRows(
+	        info
+        );
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+        chart.draw(data, null);
       };
       url_name = "http://127.0.0.1:5000/get_age_data";
       xhttp.open("GET", url_name, true);
       xhttp.send();
-      data.addRows(
-	      info
-      );
 
-      // Instantiate and draw the chart.
-      var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
-      chart.draw(data, null);
     }
   </script>
 </head>
@@ -78,6 +78,8 @@ li a:hover {
 <li><a href="">Baggage Information</a></li></ul>
         
 </nav>
+
+<iframe width="400" height="400" style="border:none;" src="http://output14.rssinclude.com/output?type=iframe&amp;id=1173833&amp;hash=6fa8180b9386f7cb4ae3dc4864982aa7"></iframe>
     </header>
 </center>
 <section>
